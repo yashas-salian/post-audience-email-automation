@@ -1,26 +1,42 @@
+import { Runware } from "@runware/sdk-js";
 import { Context } from "hono";
-// import {Response} from "@hono/node-server"   
 
-export class imageGenerator{
-    static async postGenerator(c:Context){
-        const body=await c.req.json()
-        const desc = body.desc
-        const prompt = `Create a high-quality, eye-catching social media post image for ${desc}. 
-        The design should be visually appealing, modern, and suitable for platforms like Instagram, LinkedIn, and Twitter. 
-        Focus on highlighting the product’s key value visually — through lifestyle imagery, subtle symbolic elements, or product-centric visuals. 
-        Use balanced colors, clean composition, and clear focal points that make the post scroll-stopping and shareable. 
-        Do not include text in the image (leave space for captions outside the image). 
-        Style: professional, minimal yet engaging, adaptable for both B2B and B2C audiences.
-        `
-        const image= await c.env.AI.run(
-            '@cf/stabilityai/stable-diffusion-xl-base-1.0',
-            {prompt}
-        )
-        return new Response (image,{
-            headers:{"Content-Type":"image/png"},
-        })
-    }
-    static async adGenerator(c:Context){
+export class imageGenerator {
+    static async postGenerator(c: Context) {
+        try {
+            const body = await c.req.json();
+            const desc = body.desc;
 
+            const prompt = `Create a high-quality, eye-catching social media post image for ${desc}...`;
+
+            const runware = await Runware.initialize({
+                apiKey: c.env.RUNWARE_API_KEY,
+                timeoutDuration: 25000, // 25 seconds - under most platform limits
+            });
+
+            const result = await runware.requestImages({
+                positivePrompt: prompt,
+                model: "runware:101@1",
+                width: 512,
+                height: 512,
+                numberofImages: 1,
+            });
+
+            return c.json({ result }, 200);
+
+        } catch (error) {
+            console.error('Image generation error:', error);
+            
+            if (error.message?.includes('timeout')) {
+                return c.json({ 
+                    error: 'Image generation timed out. Please try again.' 
+                }, 408);
+            }
+            
+            return c.json({ 
+                error: 'Failed to generate image',
+                details: error.message 
+            }, 500);
+        }
     }
 }

@@ -8,13 +8,19 @@ importers:
 
   .:
     dependencies:
+      '@runware/sdk-js':
+        specifier: ^1.1.44
+        version: 1.1.44
       hono:
         specifier: ^4.9.6
         version: 4.9.6
+      openai:
+        specifier: ^5.19.1
+        version: 5.19.1(ws@8.18.0(bufferutil@4.0.9))
     devDependencies:
       wrangler:
         specifier: ^4.4.0
-        version: 4.34.0
+        version: 4.34.0(bufferutil@4.0.9)
 
 packages:
 
@@ -342,6 +348,9 @@ packages:
   '@poppinss/exception@1.2.2':
     resolution: {integrity: sha512-m7bpKCD4QMlFCjA/nKTs23fuvoVFoA83brRKmObCUNmi/9tVu8Ve3w4YQAnJu4q3Tjf5fr685HYIC/IA2zHRSg==}
 
+  '@runware/sdk-js@1.1.44':
+    resolution: {integrity: sha512-D9rpdcTL3DVWCH8IQUjD8MXBlAGYWuXaLH9+1XwMKCVTgmpm8ohxI2v0or63CHPwf1bd4NHUR4PiwYxHMpuRSA==}
+
   '@sindresorhus/is@7.0.2':
     resolution: {integrity: sha512-d9xRovfKNz1SKieM0qJdO+PQonjnnIfSNWfHYnBSJ9hkjm0ZPw6HlxscDXYstp3z+7V2GOFHc+J0CYrYTjqCJw==}
     engines: {node: '>=18'}
@@ -360,6 +369,10 @@ packages:
 
   blake3-wasm@2.1.5:
     resolution: {integrity: sha512-F1+K8EbfOZE49dtoPtmxUQrpXaBIl3ICvasLh+nJta0xkz+9kF/7uet9fLnwKqhDrmj6g+6K3Tw9yQPUg2ka5g==}
+
+  bufferutil@4.0.9:
+    resolution: {integrity: sha512-WDtdLmJvAuNNPzByAYpRo2rF1Mmradw6gvWsQKf63476DDXmomT9zUiGypLcG4ibIM67vhAj8jJRdbmEws2Aqw==}
+    engines: {node: '>=6.14.2'}
 
   color-convert@2.0.1:
     resolution: {integrity: sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==}
@@ -430,8 +443,24 @@ packages:
     engines: {node: '>=18.0.0'}
     hasBin: true
 
+  node-gyp-build@4.8.4:
+    resolution: {integrity: sha512-LA4ZjwlnUblHVgq0oBF3Jl/6h/Nvs5fzBLwdEF4nuxnFdsfajde4WfxtJr3CaiH+F6ewcIB/q4jQ4UzPyid+CQ==}
+    hasBin: true
+
   ohash@2.0.11:
     resolution: {integrity: sha512-RdR9FQrFwNBNXAr4GixM8YaRZRJ5PUWbKYbE5eOsrwAjJW0q2REGcf79oYPsLyskQCZG1PLN+S/K1V00joZAoQ==}
+
+  openai@5.19.1:
+    resolution: {integrity: sha512-zSqnUF7oR9ksmpusKkpUgkNrj8Sl57U+OyzO8jzc7LUjTMg4DRfR3uCm+EIMA6iw06sRPNp4t7ojp3sCpEUZRQ==}
+    hasBin: true
+    peerDependencies:
+      ws: ^8.18.0
+      zod: ^3.23.8
+    peerDependenciesMeta:
+      ws:
+        optional: true
+      zod:
+        optional: true
 
   path-to-regexp@6.3.0:
     resolution: {integrity: sha512-Yhpw4T9C6hPpgPeA28us07OJeqZ5EzQTkbfwuhsUg0c237RomFoETJgmp2sa3F/41gfLE6G5cqcYwznmeEeOlQ==}
@@ -471,6 +500,10 @@ packages:
 
   unenv@2.0.0-rc.20:
     resolution: {integrity: sha512-8tn4tAl9vD5nWoggAAPz28vf0FY8+pQAayhU94qD+ZkIbVKCBAH/E1MWEEmhb9Whn5EgouYVfBJB20RsTLRDdg==}
+
+  uuid@9.0.1:
+    resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
+    hasBin: true
 
   workerd@1.20250902.0:
     resolution: {integrity: sha512-rM+8ARYoy9gWJNPW89ERWyjbp7+m1hu6PFbehiP8FW9Hm5kNVo71lXFrkCP2HSsTP1OLfIU/IwanYOijJ0mQDw==}
@@ -715,6 +748,15 @@ snapshots:
 
   '@poppinss/exception@1.2.2': {}
 
+  '@runware/sdk-js@1.1.44':
+    dependencies:
+      uuid: 9.0.1
+      ws: 8.18.0(bufferutil@4.0.9)
+    optionalDependencies:
+      bufferutil: 4.0.9
+    transitivePeerDependencies:
+      - utf-8-validate
+
   '@sindresorhus/is@7.0.2': {}
 
   '@speed-highlight/core@1.2.7': {}
@@ -724,6 +766,11 @@ snapshots:
   acorn@8.14.0: {}
 
   blake3-wasm@2.1.5: {}
+
+  bufferutil@4.0.9:
+    dependencies:
+      node-gyp-build: 4.8.4
+    optional: true
 
   color-convert@2.0.1:
     dependencies:
@@ -794,7 +841,7 @@ snapshots:
 
   mime@3.0.0: {}
 
-  miniflare@4.20250902.0:
+  miniflare@4.20250902.0(bufferutil@4.0.9):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       acorn: 8.14.0
@@ -805,14 +852,21 @@ snapshots:
       stoppable: 1.1.0
       undici: 7.15.0
       workerd: 1.20250902.0
-      ws: 8.18.0
+      ws: 8.18.0(bufferutil@4.0.9)
       youch: 4.1.0-beta.10
       zod: 3.22.3
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
 
+  node-gyp-build@4.8.4:
+    optional: true
+
   ohash@2.0.11: {}
+
+  openai@5.19.1(ws@8.18.0(bufferutil@4.0.9)):
+    optionalDependencies:
+      ws: 8.18.0(bufferutil@4.0.9)
 
   path-to-regexp@6.3.0: {}
 
@@ -869,6 +923,8 @@ snapshots:
       pathe: 2.0.3
       ufo: 1.6.1
 
+  uuid@9.0.1: {}
+
   workerd@1.20250902.0:
     optionalDependencies:
       '@cloudflare/workerd-darwin-64': 1.20250902.0
@@ -877,13 +933,13 @@ snapshots:
       '@cloudflare/workerd-linux-arm64': 1.20250902.0
       '@cloudflare/workerd-windows-64': 1.20250902.0
 
-  wrangler@4.34.0:
+  wrangler@4.34.0(bufferutil@4.0.9):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@cloudflare/unenv-preset': 2.7.2(unenv@2.0.0-rc.20)(workerd@1.20250902.0)
       blake3-wasm: 2.1.5
       esbuild: 0.25.4
-      miniflare: 4.20250902.0
+      miniflare: 4.20250902.0(bufferutil@4.0.9)
       path-to-regexp: 6.3.0
       unenv: 2.0.0-rc.20
       workerd: 1.20250902.0
@@ -893,7 +949,9 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  ws@8.18.0: {}
+  ws@8.18.0(bufferutil@4.0.9):
+    optionalDependencies:
+      bufferutil: 4.0.9
 
   youch-core@0.3.3:
     dependencies:
