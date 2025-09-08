@@ -7,6 +7,7 @@
     "cf-typegen": "wrangler types --env-interface CloudflareBindings"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "@runware/sdk-js": "^1.1.44",
     "hono": "^4.9.6",
     "openai": "^5.19.1"
