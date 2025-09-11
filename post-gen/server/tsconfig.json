@@ -9,6 +9,12 @@
       "ESNext",
       "DOM"
     ],
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/shared/*": ["./shared/*"],
+      // "@/server/*": ["./server/*"],
+      // "@/client/*": ["./client/*"]
+    },
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx"
   },

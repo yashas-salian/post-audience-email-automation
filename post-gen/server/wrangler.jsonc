@@ -14,6 +14,8 @@
     "CLOUDINARY_API_KEY" : "568924778519928",
     "CLOUDINARY_CLOUD_NAME" : "dtxkx3sji",
     "CLOUDINARY_UPLOAD_PRESET" : "yashas_cloudinary",
+    "REDIS_URL":"https://brave-tahr-9071.upstash.io",
+    "REDIS_TOKEN":"ASNvAAImcDEzMzdlMmNkYjI0NWU0YjEzODAwMzE1MmM4NzI2NGU0MXAxOTA3MQ"
   },
   // "kv_namespaces": [
   //   {
