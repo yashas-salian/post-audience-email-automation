@@ -1,5 +1,6 @@
 "use client"
 
+import type { tabs } from "@/pages/dashboard"
 import type React from "react"
 import { useCallback, useState } from "react"
 
@@ -28,7 +29,8 @@ export interface StaggeredSidebarProps {
   changeMenuColorOnOpen?: boolean
   onMenuOpen?: () => void
   onMenuClose?: () => void
-  children?: React.ReactNode
+  children?: React.ReactNode,
+  setTab: React.Dispatch<React.SetStateAction<tabs>>
 }
 
 export const StaggeredSidebar: React.FC<StaggeredSidebarProps> = ({
@@ -46,6 +48,7 @@ export const StaggeredSidebar: React.FC<StaggeredSidebarProps> = ({
   onMenuOpen,
   onMenuClose,
   children,
+  setTab
 }: StaggeredSidebarProps) => {
   const [open, setOpen] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
@@ -171,7 +174,10 @@ export const StaggeredSidebar: React.FC<StaggeredSidebarProps> = ({
                       }}
                       href={item.link}
                       aria-label={item.ariaLabel}
-                      onClick={toggleMenu}
+                      onClick={()=>{
+                        setTab(item.ariaLabel as tabs)
+                        toggleMenu()
+                      }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.color = accentColor
                         e.currentTarget.style.cursor = "pointer"

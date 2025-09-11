@@ -1,13 +1,13 @@
+import type { tabs } from '@/pages/dashboard';
 import {  StaggeredSidebar } from './StaggeredMenu';
-import logo from "../../public/Brainstorming Energy Logo.png"
 
 
-export const SideBar = () =>{
+export const SideBar = ({setTab}:{setTab: React.Dispatch<React.SetStateAction<tabs>>}) =>{
 const menuItems = [
-  { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
-  { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
-  { label: 'Services', ariaLabel: 'View our services', link: '/services' },
-  { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
+  { label: 'Home', ariaLabel: 'Home', link: '#' },
+  { label: 'Social media post', ariaLabel: 'Social media post', link: '#' },
+  { label: 'Ads', ariaLabel: 'Ads', link: '#' },
+  { label: 'Target Audience', ariaLabel: 'Target Audience', link: '#' }
 ];
 
 const socialItems = [
@@ -31,6 +31,7 @@ return <header className="flex items-center justify-between p-6">
           position="right"
           displayItemNumbering={true}
           displaySocials={true}
+          setTab={setTab}
         />
       </header>
 }

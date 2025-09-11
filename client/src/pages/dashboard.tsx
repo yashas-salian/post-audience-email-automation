@@ -14,7 +14,7 @@ export const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar/>
-      <SideBar/>   
+      <SideBar setTab={setTab}/>   
       {
         tab == "Home" && <Home/>
       } 

@@ -13,7 +13,7 @@ export const Home = () => {
                     <h2>Card 2</h2>
                     <p>This is the second card in the stack</p>
                 </ScrollStackItem>
-                <ScrollStackItem color='#404041'>
+                <ScrollStackItem color='#404041'>   
                     <h2>Card 3</h2>
                     <p>This is the third card in the stack</p>
                 </ScrollStackItem>
