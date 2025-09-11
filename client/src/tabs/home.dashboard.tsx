@@ -1,5 +1,5 @@
 // import ScrollReveal from "@/components/ScrollReveal"
-import ScrollStack, { ScrollStackItem } from '../components/ScrollStack'
+// import ScrollStack, { ScrollStackItem } from '../components/ScrollStack'
 
 export const Home = () => {
     return <div className="absolute bottom-0 overflow-y-scroll [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] ">
@@ -19,6 +19,7 @@ export const Home = () => {
                 </ScrollStackItem>
             </ScrollStack>
         </div> */}
+        hiiiiiiiiii from home
 
     </div>
 }
