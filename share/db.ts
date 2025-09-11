@@ -28,4 +28,4 @@ export class Singleton{
 
 }
 
-// export const prisma = Singleton.getPrismaInstance()
+export const prisma = Singleton.getPrismaInstance()
