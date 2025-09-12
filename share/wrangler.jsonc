@@ -10,7 +10,10 @@
       "ACCELERATE_DATABASE_URL":"prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RfaWQiOjEsInNlY3VyZV9rZXkiOiJza181SkpkOF9YaGU5ZXJudXRtaVJXeS0iLCJhcGlfa2V5IjoiMDFLNFZZTUpLQVdCQTVNWUs5RTFXMkVWQkEiLCJ0ZW5hbnRfaWQiOiI2ODI1MzU5ODc5ODcyZGJhZTZhNzBiMDY1Y2I5MWMwMjEwYjUzOWM2NmViMjZkNTgyMmFjYmFjZTM1ZjRmNWI4IiwiaW50ZXJuYWxfc2VjcmV0IjoiMjY0YjBiMTItMzJhZi00MTU0LThhMTMtOWM1N2JhN2UyNGZmIn0.5mKBuQ4F18H6nwdoIQglHf_fMVtY1Ji75wVew4Svfzw",
       "DATABASE_URL":"postgresql://neondb_owner:npg_UePoC8jT5kDI@ep-weathered-breeze-adpyfe69-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
       "REDIS_URL":"https://brave-tahr-9071.upstash.io",
-      "REDIS_TOKEN":"ASNvAAImcDEzMzdlMmNkYjI0NWU0YjEzODAwMzE1MmM4NzI2NGU0MXAxOTA3MQ"
+      "REDIS_TOKEN":"ASNvAAImcDEzMzdlMmNkYjI0NWU0YjEzODAwMzE1MmM4NzI2NGU0MXAxOTA3MQ",
+      "GEMINI_API_KEY": "AIzaSyDbZrAdol1vMUraMCaNFf165MuinyERCXM",
+
+
   },
   // "kv_namespaces": [
   //   {

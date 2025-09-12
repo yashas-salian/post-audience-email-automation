@@ -1,6 +1,5 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import { triggerAsyncId } from "async_hooks";
 import { Context } from "hono";
+import { geminiSingleton } from "../../../../share/gemini"
 
 export const generateImage = async (c : Context, desc : string, type : "Ad" | "Social media post") => {
     try {
@@ -10,12 +9,12 @@ export const generateImage = async (c : Context, desc : string, type : "Ad" | "S
         Use balanced colors, clean composition, and clear focal points.
         Do not include text in the image.`;
 
-        const genAI = new GoogleGenerativeAI(c.env.GEMINI_API_KEY);
-        const model = genAI.getGenerativeModel({
-            model: "gemini-2.0-flash-preview-image-generation",
-        });
+        const model = geminiSingleton.getInstance(c)
+        if(!model){
+          throw new appError(500, "Gemini model not found")
+        }
 
-        return await model.generateContent({
+        return await model?.generateContent({
         contents: [{ role: "user", parts: [{ text: prompt }] }],
         generationConfig: {
           responseModalities: ["TEXT", "IMAGE"],
@@ -23,6 +22,6 @@ export const generateImage = async (c : Context, desc : string, type : "Ad" | "S
       } as any);
       
     } catch (error) {
-        
+            message : error instanceof Error ? error.message: "Unknown error"
     }
 } 
