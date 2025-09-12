@@ -2,6 +2,7 @@ import { Context } from "hono";
 import { appResponse } from "../utils/appResponse";
 import { generateImage } from "../utils/generateImageUsingGemini";
 import { uploadToCloudinary } from "../utils/uploadToCloudinary";
+import { appError } from "@/utils/appError";
 
 export class imageGenerator {
   static async postGenerator(c: Context) {
@@ -51,6 +52,7 @@ export class imageGenerator {
       const file = new Blob([byteArray], { type: imagePart.inlineData.mimeType });
 
       const response = await uploadToCloudinary(c, file)
+      console.log(response)
       if (!response.ok) throw new appError(500,"Cloudinary upload failed");
 
       const data = await response.json();

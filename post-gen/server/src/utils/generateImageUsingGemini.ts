@@ -1,6 +1,7 @@
 import { Context } from "hono";
 import { geminiSingleton } from "../../../../share/gemini"
-
+import { appError } from "../utils/appError"
+import app from "..";
 export const generateImage = async (c : Context, desc : string, type : "Ad" | "Social media post") => {
     try {
         const prompt = `Create a high-quality, eye-catching ${type} for ${desc}.
@@ -22,6 +23,6 @@ export const generateImage = async (c : Context, desc : string, type : "Ad" | "S
       } as any);
       
     } catch (error) {
-            message : error instanceof Error ? error.message: "Unknown error"
+      throw new appError(500,error instanceof Error ? error.message: "Unknown error")
     }
 } 
