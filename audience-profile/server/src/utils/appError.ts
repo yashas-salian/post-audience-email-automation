@@ -1,6 +1,6 @@
 
 
-class appError extends Error{
+export class appError extends Error{
     statusCode : number
     success : boolean
     constructor(

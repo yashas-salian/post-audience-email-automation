@@ -1,8 +1,7 @@
 import { Context } from "hono";
 import { generateAudienceProfile } from "../utils/geminiResponse";
 import { appResponse } from "../utils/appResponse";
-import { appendFile } from "fs";
-
+import { appError } from "../utils/appError"
 export class audienceProfile{
     static async getProfile(c: Context){
         const desc = await c.req.json()

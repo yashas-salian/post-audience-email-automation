@@ -1,5 +1,6 @@
 import { Context } from "hono";
 import { geminiSingleton } from "../../../../share/gemini"
+import { appError } from "./appError";
 
 export const generateAudienceProfile = async (c : Context, desc : string) => {
     try {
