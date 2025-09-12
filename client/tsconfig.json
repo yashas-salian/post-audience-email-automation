@@ -9,6 +9,9 @@
     }
   ],
   "compilerOptions": {
+    "jsx": "react-jsx",          // for React 17+
+    "types": ["react", "react-dom"],
+    "lib": ["dom", "esnext"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]

@@ -153,7 +153,7 @@ export const StaggeredSidebar: React.FC<StaggeredSidebarProps> = ({
           }}
           aria-hidden={!open}
         >
-          <div className="flex-1 flex flex-col gap-8">
+          <div className="mt-10 flex-1 flex flex-col gap-8">
             <ul className="list-none m-0 p-0 flex flex-col gap-4" role="list">
               {items && items.length ? (
                 items.map((item, idx) => (
@@ -165,7 +165,7 @@ export const StaggeredSidebar: React.FC<StaggeredSidebarProps> = ({
                     }}
                   >
                     <a
-                      className={`relative text-black font-bold text-4xl md:text-5xl cursor-pointer leading-tight tracking-tight uppercase transition-all duration-300 ease-out inline-block no-underline hover:text-current py-2 pointer-events-auto ${
+                      className={` relative text-black font-bold text-4xl md:text-4xl cursor-pointer leading-tight tracking-tight uppercase transition-all duration-300 ease-out inline-block no-underline hover:text-current py-2 pointer-events-auto ${
                         open ? "translate-y-0 rotate-0 opacity-100" : "translate-y-14 rotate-2 opacity-0"
                       }`}
                       style={{

@@ -1,25 +1,16 @@
-// import ScrollReveal from "@/components/ScrollReveal"
-// import ScrollStack, { ScrollStackItem } from '../components/ScrollStack'
+import CircularGallery from "@/components/CircularGallery";
+import { FlipWords } from "@/components/ui/flip-words";
 
 export const Home = () => {
-    return <div className="absolute bottom-0 overflow-y-scroll [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] ">
-            {/* <div className="z-20 h-100 ml-40 w-250 border border-red-500 ">
-            <ScrollStack useWindowScroll={false}>
-                <ScrollStackItem color='#F48120'>
-                    <h2>Card 1</h2>
-                    <p>This is the first card in the stack</p>
-                </ScrollStackItem>
-                <ScrollStackItem color='#FAAD3F'>
-                    <h2>Card 2</h2>
-                    <p>This is the second card in the stack</p>
-                </ScrollStackItem>
-                <ScrollStackItem color='#404041'>   
-                    <h2>Card 3</h2>
-                    <p>This is the third card in the stack</p>
-                </ScrollStackItem>
-            </ScrollStack>
-        </div> */}
-        hiiiiiiiiii from home
+    const words = ["Social media posts", "Ads", "Email drafts", "Target audience"];
+    return <div className="z-10">
+        <div className="mt-10 flex justify-center text-5xl font-bold">   
+            We help you create and get
+            <FlipWords words={words}/> 
+        </div>  
 
+        <div style={{ height: '600px', position: 'relative' }}>
+            <CircularGallery bend={3} textColor="#ffffff" borderRadius={0.05} scrollEase={0.02}/>
+        </div> 
     </div>
 }
