@@ -1,21 +1,30 @@
 import { Context } from "hono";
 import { geminiSingleton } from "../../../../share/gemini"
 import { appError } from "./appError";
+import { audienceProfilePersona } from "../models/gemini.response";
 
 export const generateAudienceProfile = async (c : Context, desc : string) => {
     try {
-        const prompt = `Based on the following product description, generate the top 4 customer personas most likely to use or purchase this product. Each persona should be distinct, realistic, and reflect real-world demographics. Return the output only in JSON format with the following fields for each persona:
-                        1.Gender
-                        2.Region
-                        3.PriorityOrder (1 = highest relevance)
-                        4.MarketSharePercent (estimated percent of market they represent)
-                        5.Occupation
-                        6.AgeRange
-                        7.IncomeLevel (low, medium, high, or numeric if applicable)
-                        8.Interests (list of 3–5 relevant interests or lifestyle traits)
-                        Here is the product description: ${desc}`;
+        const prompt = `
+                      You are a marketing strategist. Based on the following product description:
+                      "${desc}"
+                      
+                      Generate 3 detailed customer personas. For each persona, include:
+                      - Priority order
+                      - Name
+                      - Age range
+                      - Gender
+                      - Occupation (what they do, like are they student , teacher , lawyer , blogger etc)
+                      - Region
+                      - Interests
+                      - Lifestyle
+                      - Buying motivation
+                      - Preferred marketing channel (social, email, offline, etc.)
+                      - Income level
+                      - Market Share
+                      `;
 
-        const model = geminiSingleton.getInstance(c)
+        const model = geminiSingleton.getInstanceForTextModel(c)
         if(!model){
           throw new appError(500, "Gemini model not found")
         }
@@ -24,12 +33,15 @@ export const generateAudienceProfile = async (c : Context, desc : string) => {
         contents: [{ role: "user", parts: [{ text: prompt }] }],
         generationConfig: {
           responseModalities: ["TEXT"],
+          responseSchema :  audienceProfilePersona,
+          responseMimeType: "application/json"
         },
       } as any);
       
     } catch (error) {
-        return c.json({
-            message : error instanceof Error ? error.message: "Unknown error"
-        })
+        // return c.json({
+        //     message : error instanceof Error ? error.message: "Unknown error"
+        // })
+        throw new appError(500, error instanceof Error ? error.message: "Unknown error")
     }
 } 
