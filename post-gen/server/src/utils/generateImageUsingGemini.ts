@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import { geminiSingleton, geminiSingleton1 } from "../../../../share/gemini"
+import { geminiSingleton } from "../../../../share/gemini"
 import { appError } from "../utils/appError"
 import app from "..";
 export const generateImage = async (c : Context, desc : string, type : "Ad" | "Social media post") => {
@@ -10,7 +10,7 @@ export const generateImage = async (c : Context, desc : string, type : "Ad" | "S
         Use balanced colors, clean composition, and clear focal points.
         Do not include text in the image.`;
 
-        const model = geminiSingleton1.getInstanceForImageModel(c)
+        const model = geminiSingleton.getInstanceForImageModel(c)
         if(!model){
           throw new appError(500, "Gemini model not found")
         }
