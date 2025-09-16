@@ -1,0 +1,28 @@
+{
+  "name": "agent-orchestration",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsc && node dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.14.0",
+  "dependencies": {
+    "@types/express": "^5.0.3",
+    "@upstash/redis": "^1.35.3",
+    "bullmq": "4.15.0",
+    "dotenv": "^17.2.2",
+    "i": "^0.3.7",
+    "ioredis": "^5.7.0",
+    "npm": "^11.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.0",
+    "ts-node-dev": "^2.0.0"
+  }
+}
