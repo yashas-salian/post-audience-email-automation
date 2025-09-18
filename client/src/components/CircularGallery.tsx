@@ -657,7 +657,7 @@ interface CircularGalleryProps {
 export default function CircularGallery({
   items,
   bend = 3,
-  textColor = '#ffffff',
+  textColor = '#F48120',
   borderRadius = 0.05,
   font = 'bold 30px Figtree',
   scrollSpeed = 2,

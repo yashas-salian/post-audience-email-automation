@@ -7,9 +7,9 @@ import { appError } from "@/utils/appError";
 export class imageGenerator {
   static async postGenerator(c: Context) {
 
-      const { desc, type } = await c.req.json();
+      const { productDetails, type } = await c.req.json();
 
-      const result = await generateImage(c, desc, type)
+      const result = await generateImage(c, productDetails, type)
       if(!result) throw new appError(500, "Image generation by gemini failed")
 
       const imagePart = result.response.candidates?.[0]?.content?.parts?.find(

@@ -4,9 +4,10 @@ import {  StaggeredSidebar } from './StaggeredMenu';
 
 export const SideBar = ({setTab}:{setTab: React.Dispatch<React.SetStateAction<tabs>>}) =>{
 const menuItems = [
-  { label: 'Home', ariaLabel: 'Home', link: '#' },
+  { label: 'Campaign', ariaLabel: 'Home', link: '#' },
   { label: 'Social media post', ariaLabel: 'Social media post', link: '#' },
   { label: 'Ads', ariaLabel: 'Ads', link: '#' },
+  { label: 'Emails', ariaLabel: 'Ads', link: '#' },
   { label: 'Target Audience', ariaLabel: 'Target Audience', link: '#' }
 ];
 

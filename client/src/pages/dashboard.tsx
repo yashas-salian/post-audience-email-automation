@@ -7,7 +7,6 @@ import { AudienceProfile } from "@/tabs/audience-profile.dashboard"
 import { Home } from "@/tabs/home.dashboard"
 import { Post } from "@/tabs/post.dashboard"
 import { useState } from "react"
-import background from "../../public/background-image-3.png"
 import Shuffle from "@/components/Shuffle"
 
 export type tabs =  "Home" | "Social media post" | "Ads" | "Target Audience"
