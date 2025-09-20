@@ -12,7 +12,7 @@ export class campaignController{
         const response = await generateCampaign(c,productDetails,prevDayPerformance)
         if(!response){
             throw new appError(500,"Response from gemini not found")
-        }
+        }   
 
         const profiles : string = response.response.candidates?.[0].content.parts?.[0].text || ""
         const FormattedProfileInJson = JSON.parse(profiles)
