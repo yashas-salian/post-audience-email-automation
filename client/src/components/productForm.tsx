@@ -9,7 +9,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
-import { Upload, X, DollarSign, Building2, Package, FileText, ImageIcon, Check } from "lucide-react"
+import { Upload, X, DollarSign, Building2, Package, FileText, ImageIcon } from "lucide-react"
+import axios from "axios"
 
 interface FormData {
   productName: string
@@ -26,7 +27,7 @@ interface FormErrors {
   price?: string
 }
 
-export function ProductForm() {
+export const ProductForm = ({setPostLoading, setimgURL}:{setPostLoading: React.Dispatch<React.SetStateAction<boolean>>, setimgURL: React.Dispatch<React.SetStateAction<null | string>>}) => {
   const [formData, setFormData] = useState<FormData>({
     productName: "",
     companyName: "",
@@ -36,37 +37,9 @@ export function ProductForm() {
   })
 
   const [errors, setErrors] = useState<FormErrors>({})
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
   const [dragActive, setDragActive] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const validateForm = (): boolean => {
-    const newErrors: FormErrors = {}
-
-    if (!formData.productName.trim()) {
-      newErrors.productName = "Product name is required"
-    }
-
-    if (!formData.companyName.trim()) {
-      newErrors.companyName = "Company name is required"
-    }
-
-    if (!formData.description.trim()) {
-      newErrors.description = "Product description is required"
-    } else if (formData.description.trim().length < 10) {
-      newErrors.description = "Description must be at least 10 characters"
-    }
-
-    if (!formData.price.trim()) {
-      newErrors.price = "Price is required"
-    } else if (isNaN(Number(formData.price)) || Number(formData.price) <= 0) {
-      newErrors.price = "Please enter a valid price"
-    }
-
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
 
   const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
@@ -115,48 +88,36 @@ export function ProductForm() {
     }
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (!validateForm()) return
-
-    setIsSubmitting(true)
-
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-
-    // Reset form after success
-    setTimeout(() => {
-      setFormData({
-        productName: "",
-        companyName: "",
-        description: "",
-        price: "",
-        image: null,
+  const handlePostGen = async () => {
+    try {
+      setPostLoading(true)
+      const response = await axios.post('http://127.0.0.1:8787/generate-image/social-post', {
+        productDetails: formData, 
+        type: "Social media post"
       })
-      setIsSubmitted(false)
-      if (fileInputRef.current) {
-        fileInputRef.current.value = ""
-      }
-    }, 3000)
+      setimgURL(response.data.data)
+      console.log(response)
+      console.log(response.data.data)
+    } catch (error) {
+      console.error('Error generating post:', error)
+    } finally {
+      setPostLoading(false)
+    }
   }
 
-  if (isSubmitted) {
-    return (
-      <Card className="max-w-2xl mx-auto border-2 border-accent/20 bg-card/50 backdrop-blur-sm">
-        <CardContent className="pt-12 pb-12 text-center">
-          <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
-            <Check className="w-8 h-8 text-accent" />
-          </div>
-          <h3 className="text-2xl font-bold text-foreground mb-2">Product Added Successfully!</h3>
-          <p className="text-muted-foreground">Your product has been added to the catalog.</p>
-        </CardContent>
-      </Card>
-    )
-  }
+  // if (isSubmitted) {
+  //   return (
+  //     <Card className="max-w-2xl mx-auto border-2 border-accent/20 bg-card/50 backdrop-blur-sm">
+  //       <CardContent className="pt-12 pb-12 text-center">
+  //         <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
+  //           <Check className="w-8 h-8 text-accent" />
+  //         </div>
+  //         <h3 className="text-2xl font-bold text-foreground mb-2">Product Added Successfully!</h3>
+  //         <p className="text-muted-foreground">Your product has been added to the catalog.</p>
+  //       </CardContent>
+  //     </Card>
+  //   )
+  // }
 
   return (
     <Card className="max-w-2xl mx-auto border-2 border-[#F48120] bg-card/50 backdrop-blur-sm">
@@ -167,7 +128,7 @@ export function ProductForm() {
         </CardTitle>
       </CardHeader>
       <CardContent className="pt-8">
-        <form onSubmit={handleSubmit} className="space-y-8">
+        <div className="space-y-8">
           {/* Product Name */}
           <div className="space-y-2">
             <Label htmlFor="productName" className="text-sm font-semibold text-foreground flex items-center gap-2">
@@ -336,21 +297,15 @@ export function ProductForm() {
           {/* Submit Button */}
           <div className="pt-4">
             <Button
-              type="submit"
-              disabled={isSubmitting}
+              type="button"
+              // disabled={isSubmitting}
               className="w-full h-12 text-base font-semibold bg-[#F48120] hover:bg-accent/90 text-white transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]"
+              onClick={handlePostGen}
             >
-              {isSubmitting ? (
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 border-2 border-accent-foreground/30 border-t-accent-foreground rounded-full animate-spin" />
-                  Adding Product...
-                </div>
-              ) : (
-                "Add Product"
-              )}
+                Add Product
             </Button>
           </div>
-        </form>
+        </div>
       </CardContent>
     </Card>
   )

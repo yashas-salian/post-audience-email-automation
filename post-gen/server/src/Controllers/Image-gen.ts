@@ -22,6 +22,9 @@ export class imageGenerator {
         atob(imagePart.inlineData.data),
         (ch) => ch.charCodeAt(0)
       );
+
+        console.log("MIME Type from Gemini:", imagePart.inlineData.mimeType);
+        
       const file = new Blob([byteArray], { type: imagePart.inlineData.mimeType });
 
       const response = await uploadToCloudinary(c, file)

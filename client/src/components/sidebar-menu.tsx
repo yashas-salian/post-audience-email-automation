@@ -1,5 +1,6 @@
 import type { tabs } from '@/pages/dashboard';
 import {  StaggeredSidebar } from './StaggeredMenu';
+import { useRef } from 'react';
 
 
 export const SideBar = ({setTab}:{setTab: React.Dispatch<React.SetStateAction<tabs>>}) =>{
@@ -16,6 +17,11 @@ const socialItems = [
   { label: 'GitHub', link: 'https://github.com' },
   { label: 'LinkedIn', link: 'https://linkedin.com' }
 ];
+const handleScroll = () => {
+    // Scroll to the div when button is clicked
+    const targetRef = useRef<HTMLDivElement>(null);
+    targetRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
 return <header className="flex items-center justify-between p-6">
         <div className='border border-black rounded-full'> 
