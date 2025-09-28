@@ -1,0 +1,5 @@
+export const postURL = "http://127.0.0.1:8787"
+export const campaignURL = "http://127.0.0.1:8788"
+export const emailURL = "http://127.0.0.1:8791"
+export const runnerURL = "http://127.0.0.1:8789"
+export const audienceURL = "http://127.0.0.1:8790"

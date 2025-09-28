@@ -5,4 +5,4 @@ import { ratelimmiter } from "../middlewares/ratelimitter";
 
 export const audienceProfileRouter = new Hono()
 
-audienceProfileRouter.get("/get-audience-profile",ratelimmiter,asyncHandler(audienceProfile.getProfile))
+audienceProfileRouter.post("/get-audience-profile",ratelimmiter,asyncHandler(audienceProfile.getProfile))

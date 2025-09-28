@@ -1,9 +1,9 @@
 import { Context } from "hono";
 import { geminiSingleton } from "../../../share/gemini"
 import { appError } from "./appError";
-import { CampaignSchema } from "../models/geminiResponseSchema";
+import { PostSchema } from "../models/geminiResponseSchema";
 
-export const generateCampaign = async (c : Context, productDetails : string, prevDayPerformance : string) => {
+export const generatePrompt = async (c : Context, productDetails : string, prevDayPerformance : string) => {
     try {
         const prompt = `
                       You are a marketing strategist. Based on the following product description:
@@ -25,7 +25,7 @@ export const generateCampaign = async (c : Context, productDetails : string, pre
         contents: [{ role: "user", parts: [{ text: prompt }] }],
         generationConfig: {
           responseModalities: ["TEXT"],
-          responseSchema :  CampaignSchema,
+          responseSchema :  PostSchema,
           responseMimeType: "application/json"
         },
       } as any);

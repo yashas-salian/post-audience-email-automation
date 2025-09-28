@@ -11,6 +11,9 @@ importers:
       '@google/generative-ai':
         specifier: ^0.24.1
         version: 0.24.1
+      '@prisma/extension-accelerate':
+        specifier: ^2.0.2
+        version: 2.0.2(@prisma/client@6.16.2)
       '@runware/sdk-js':
         specifier: ^1.1.44
         version: 1.1.44
@@ -354,6 +357,24 @@ packages:
 
   '@poppinss/exception@1.2.2':
     resolution: {integrity: sha512-m7bpKCD4QMlFCjA/nKTs23fuvoVFoA83brRKmObCUNmi/9tVu8Ve3w4YQAnJu4q3Tjf5fr685HYIC/IA2zHRSg==}
+
+  '@prisma/client@6.16.2':
+    resolution: {integrity: sha512-E00PxBcalMfYO/TWnXobBVUai6eW/g5OsifWQsQDzJYm7yaY+IRLo7ZLsaefi0QkTpxfuhFcQ/w180i6kX3iJw==}
+    engines: {node: '>=18.18'}
+    peerDependencies:
+      prisma: '*'
+      typescript: '>=5.1.0'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+      typescript:
+        optional: true
+
+  '@prisma/extension-accelerate@2.0.2':
+    resolution: {integrity: sha512-yZK6/k7uOEFpEsKoZezQS1CKDboPtBCQ0NyI70e1Un8tDiRgg80iWGyjsJmRpps2ZIut3MroHP+dyR3wVKh8lA==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@prisma/client': '>=4.16.1'
 
   '@runware/sdk-js@1.1.44':
     resolution: {integrity: sha512-D9rpdcTL3DVWCH8IQUjD8MXBlAGYWuXaLH9+1XwMKCVTgmpm8ohxI2v0or63CHPwf1bd4NHUR4PiwYxHMpuRSA==}
@@ -756,6 +777,12 @@ snapshots:
       supports-color: 10.2.0
 
   '@poppinss/exception@1.2.2': {}
+
+  '@prisma/client@6.16.2': {}
+
+  '@prisma/extension-accelerate@2.0.2(@prisma/client@6.16.2)':
+    dependencies:
+      '@prisma/client': 6.16.2
 
   '@runware/sdk-js@1.1.44':
     dependencies:

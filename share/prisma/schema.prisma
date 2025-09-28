@@ -12,6 +12,7 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  // directUrl = env("DIRECT_URL ")
 }
 
 
@@ -20,12 +21,45 @@ model User{
   Username String
   Email String @unique
   Password String
+  campaigns Campaign[]
 }
 
-model Assets{
+model Campaign{
   ID String @id @default(cuid())
-  Company_name  String?
   Product_name String
-  Asset_type String
-  Url String
+  Campany_name String
+  Description String
+  Price String
+  Features String
+  USP String
+  Post_description String
+  Start_date DateTime
+  End_date DateTime
+  Status String
+  User_ID String
+  user User @relation(fields: [User_ID], references: [ID], onDelete: Cascade)
+  Posts Post[]
+  Ads Ad[]
+}
+
+model Post{
+  ID String @id @default(cuid())
+  Day Int
+  URL String?
+  SURL String
+  Caption String?
+  Hashtags String?
+  Prompt String 
+  Campaign_ID String
+  campaign Campaign @relation(fields: [Campaign_ID], references: [ID], onDelete: Cascade)
+}
+
+model Ad{
+  ID String @id @default(cuid())
+  URL String 
+  SURL String
+  Product_name String
+  Campany_name String
+  Campaign_ID String
+  campaign Campaign @relation(fields: [Campaign_ID], references: [ID], onDelete: Cascade)
 }

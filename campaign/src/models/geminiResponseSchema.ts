@@ -1,6 +1,6 @@
 import { SchemaType } from "@google/generative-ai";
 
-export const CampaignSchema = {
+export const PostSchema = {
   type: SchemaType.OBJECT,
   properties: {
   
